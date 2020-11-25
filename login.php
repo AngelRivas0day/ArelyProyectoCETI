@@ -7,11 +7,11 @@
                         <form action="index.php" class="row w-100">
                             <div class="col-12 mb-3">
                               <label for="exampleFormControlInput1" class="form-label">Correo</label>
-                              <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+                              <input type="email" class="form-control" placeholder="name@example.com">
                             </div>
                             <div class="col-12 mb-3">
                                 <label for="exampleFormControlInput1" class="form-label">Contrase&ntilde;a</label>
-                                <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+                                <input type="email" class="form-control" placeholder="name@example.com">
                             </div>
                             <div class="col-12 text-right">
                                 <button type="submit" class="btn btn-primary mb-3">Iniciar sesión</button>
