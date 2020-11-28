@@ -14,6 +14,7 @@
                                 <input type="password" class="form-control" required>
                             </div>
                             <div class="col-12 text-right">
+                                <input type="hidden" name="login">
                                 <button type="submit" class="btn btn-primary mb-3">Iniciar sesión</button>
                             </div>
                             <div class="col-12 text-center">
