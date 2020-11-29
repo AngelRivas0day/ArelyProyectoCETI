@@ -34,8 +34,8 @@ $albums_artista_query = "SELECT album.* FROM album JOIN artista ON artista.id = 
                                 <img src="https://source.unsplash.com/200x20<?php echo $row_['id'];?>/?album,cover" class="card-img-top" alt="...">
                                 <div class="card-body">
                                     <h5 class="card-title"><?php echo substr($row_['nombre'], 0, 20) . (strlen($row_['nombre']) > 20 ? '...' : '') ;?></h5>
-                                    <a href="./album.php?id=<?php echo $row_['id'];?>" class="stretched-link">Go somewhere</a>
-                                </div>
+                                    <a href="./album.php?id=<?php echo $row_['id'];?>" class="stretched-link"></a>
+                               </div>
                             </div>
                         </div>
                     <?php endwhile; ?>
