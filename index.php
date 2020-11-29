@@ -1,17 +1,11 @@
-<?php require('./shared/header.php') ?>
 <?php
 session_start();
-$_SESSION['user'] = 'none';
+if (!isset($_SESSION['user'])) {
+    header('Location: http://localhost:8080/CETI/PincheArely/vistas/Admin/Auth/login.php');
+}else if(isset($_SESSION['user']) && $_SESSION['user_role'] == 'admin'){
+    header('Location: http://localhost:8080/CETI/PincheArely/vistas/Admin/Artistas/');
+}else if(isset($_SESSION['user']) && $_SESSION['user_role'] == 'client'){
+    header('Location: http://localhost:8080/CETI/PincheArely/vistas/Usuario/Artistas/');
+}
+session_destroy();
 ?>
-    <div class="container">
-        <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-6">
-                col 50%
-                <?php echo $_SESSION['user'] ?>
-            </div>
-            <div class="col-xs-12 col-sm-12 col-md-6">
-                col 50%
-            </div>
-        </div>
-    </div>
-<?php require('./shared/footer.php') ?>

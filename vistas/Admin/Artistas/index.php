@@ -1,4 +1,10 @@
 <?php require('../../../shared/header.php') ?>
+<?php
+session_start();
+if($_SESSION['user_role'] != 'admin'){
+    header('Location: http://localhost:8080/CETI/PincheArely');
+}
+?>
 <div class="container">
     <div class="row">
         <div class="col-12 mt-5 mb-4">
