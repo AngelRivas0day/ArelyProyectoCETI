@@ -1,7 +1,6 @@
 <?php require('../../../shared/header.php') ?>
 <?php
-session_start();
-if($_SESSION['user_role'] != 'admin'){
+if($_SESSION['user']['role'] != 'admin'){
     header('Location: http://localhost:8080/CETI/PincheArely');
 }
 ?>
