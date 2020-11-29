@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Nov 29, 2020 at 06:15 PM
+-- Generation Time: Nov 29, 2020 at 07:44 PM
 -- Server version: 5.7.26
 -- PHP Version: 7.4.2
 
@@ -60,9 +60,16 @@ CREATE TABLE `album_cancion` (
 CREATE TABLE `artista` (
   `id` tinyint(11) UNSIGNED NOT NULL,
   `nombre` varchar(30) NOT NULL,
-  `genero` int(30) NOT NULL,
-  `descripcion` int(255) NOT NULL
+  `genero` varchar(30) NOT NULL,
+  `descripcion` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `artista`
+--
+
+INSERT INTO `artista` (`id`, `nombre`, `genero`, `descripcion`) VALUES
+(1, 'EDEN', 'Indie', 'Eden es un srtista que lorem ipsum dolor sit amet consectetur aditis.');
 
 -- --------------------------------------------------------
 
@@ -172,7 +179,7 @@ ALTER TABLE `album_cancion`
 -- AUTO_INCREMENT for table `artista`
 --
 ALTER TABLE `artista`
-  MODIFY `id` tinyint(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` tinyint(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `artista_album`
@@ -209,4 +216,3 @@ ALTER TABLE `album_cancion`
 ALTER TABLE `artista_album`
   ADD CONSTRAINT `artista_album_ibfk_1` FOREIGN KEY (`id_album`) REFERENCES `album` (`id`),
   ADD CONSTRAINT `artista_album_ibfk_2` FOREIGN KEY (`id_artista`) REFERENCES `artista` (`id`);
-
