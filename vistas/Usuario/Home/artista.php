@@ -5,36 +5,41 @@ $conn = connection();
 if($conn->connect_errno){
     echo "Hubo un error...";
 }
-?>
-<?php if(isset($_GET['id'])): ?>
-<?php
+if(isset($_GET['id'])):
 $id = $_GET['id'];
 $artista_query = "SELECT * FROM artista WHERE id = $id";
+$albums_artista_query = "SELECT album.* FROM album JOIN artista ON artista.id = $id";
     if($result = $conn->query($artista_query)):
         while($row = $result->fetch_assoc()):
 ?>
+<div class="artist_header">
+    <img src="https://source.unsplash.com/1200x800/?musician,male" alt="">
+</div>
 <div class="container">
-    <div class="row mt-5">
+    <div class="row mt-5 mb-5">
         <div class="col-12">
             <h1><?php echo $row['nombre']; ?></h1>
-            <p class="w-50">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quos iste provident corrupti amet inventore recusandae nam beatae totam ducimus nesciunt.</p>
+            <span class="text-muted">G&eacute;nero: <?php echo $row['genero']; ?></span>
+            <p class="w-50"><?php echo $row['descripcion']; ?></p>
         </div>
         <div class="col-12">
             <h2>Albumes</h2>
         </div>
         <div class="col-12">
             <div class="row">
-                <div class="col-xs-12 col-sm-12 col-md-3">
-                    <div class="card shadow position-relative">
-                        <div class="card-body">
-                            <h5 class="card-title">Lorem ipsum</h5>
-                            <p class="card-text">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum, repellendus.
-                            </p>
-                            <a href="./cancion.php?id=1" class="stretched-link">Go somewhere</a>
+                <?php if($result = $conn->query($albums_artista_query)): ?>
+                    <?php while($row_ = $result->fetch_assoc()): ?>
+                        <div class="col-xs-12 col-sm-12 col-md-3">
+                            <div class="card shadow position-relative">
+                                <img src="https://source.unsplash.com/200x20<?php echo $row_['id'];?>/?album,cover" class="card-img-top" alt="...">
+                                <div class="card-body">
+                                    <h5 class="card-title"><?php echo substr($row_['nombre'], 0, 20) . (strlen($row_['nombre']) > 20 ? '...' : '') ;?></h5>
+                                    <a href="./album.php?id=<?php echo $row_['id'];?>" class="stretched-link">Go somewhere</a>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
+                    <?php endwhile; ?>
+                <?php endif; ?>
             </div>
         </div>
     </div>
@@ -43,5 +48,5 @@ $artista_query = "SELECT * FROM artista WHERE id = $id";
         endwhile;
     endif;
 endif;
+require('../../../shared/footer.php');
 ?>
-<?php require('../../../shared/footer.php') ?>
