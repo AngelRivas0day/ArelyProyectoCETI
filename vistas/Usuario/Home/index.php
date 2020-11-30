@@ -20,12 +20,13 @@ $canciones_query = "SELECT * FROM cancion";
                 ?>
                         <div class="col-xs-12 col-sm-12 col-md-3">
                             <div class="card shadow position-relative">
+                            <img src="https://source.unsplash.com/200x20<?php echo $row_1['id'];?>/?album,cover" class="card-img-top" alt="...">
                                 <div class="card-body">
                                     <h5 class="card-title"><?php echo $row_1['nombre']; ?></h5>
                                     <p class="card-text">
-                                        <?php echo $row_1['descripcion'];?>
+                                        <?php echo substr($row_1['descripcion'], 0, 25) . (strlen($row_1['descripcion']) > 25 ? '...' : ''); ?>
                                     </p>
-                                    <a href="./artista.php?id=<?php echo $row_1['id'];?>" class="stretched-link">Go somewhere</a>
+                                    <a href="./artista.php?id=<?php echo $row_1['id'];?>" class="stretched-link"></a>
                                 </div>
                             </div>
                         </div>
@@ -40,35 +41,47 @@ $canciones_query = "SELECT * FROM cancion";
         </div>
         <div class="col-12 albumes__section mb-4">
             <div class="row">
-                <div class="col-xs-12 col-sm-12 col-md-3">
-                    <div class="card shadow position-relative">
-                        <div class="card-body">
-                            <h5 class="card-title">Lorem ipsum</h5>
-                            <p class="card-text">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum, repellendus.
-                            </p>
-                            <a href="./album.php?id=1" class="stretched-link">Go somewhere</a>
-                        </div>
-                    </div>
-                </div> 
+                <?php
+                if($result_2 = $conn->query($albumes_query)):
+                    while($row_2  = $result_2->fetch_assoc()): 
+                ?>
+                        <div class="col-xs-12 col-sm-12 col-md-3">
+                            <div class="card shadow position-relative">
+                            <img src="https://source.unsplash.com/200x20<?php echo $row_2['id'];?>/?album,cover" class="card-img-top" alt="...">
+                                <div class="card-body">
+                                    <h5 class="card-title"><?php echo substr($row_2['nombre'], 0, 20) . (strlen($row_2['nombre']) > 20 ? '...' : ''); ?></h5>
+                                    <a href="./album.php?id=<?php echo $row_2['id']; ?>" class="stretched-link"></a>
+                                </div>
+                            </div>
+                        </div> 
+                <?php
+                    endwhile;
+                endif; 
+                ?>
             </div>
         </div>
         <div class="col-12">
             <h2>Canciones</h2>
         </div>
-        <div class="col-12 canciones__section mb-4">
+        <div class="col-12 canciones__section mb-5">
             <div class="row">
-                <div class="col-xs-12 col-sm-12 col-md-3">
-                    <div class="card shadow position-relative">
-                        <div class="card-body">
-                            <h5 class="card-title">Lorem ipsum</h5>
-                            <p class="card-text">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum, repellendus.
-                            </p>
-                            <a href="./cancion.php?id=1" class="stretched-link">Go somewhere</a>
+                <?php
+                if($result_3 = $conn->query($canciones_query)):
+                    while($row_3  = $result_3->fetch_assoc()): 
+                ?>
+                        <div class="col-xs-12 col-sm-12 col-md-3">
+                            <div class="card shadow position-relative">
+                            <img src="https://source.unsplash.com/200x20<?php echo $row_3['id'];?>/?album,cover,single,song" class="card-img-top" alt="...">
+                                <div class="card-body">
+                                    <h5 class="card-title"><?php echo $row_3['nombre']; ?></h5>
+                                    <a href="./cancion.php?id=<?php echo $row_3['id'];?>" class="stretched-link"></a>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div> 
+                <?php
+                    endwhile;
+                endif; 
+                ?>
             </div>
         </div>
     </div>
