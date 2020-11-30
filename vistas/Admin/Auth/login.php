@@ -30,9 +30,6 @@ if($_SESSION['isAuth'] == TRUE){
                                 <input type="hidden" name="login">
                                 <button type="submit" class="btn btn-primary mb-3">Iniciar sesión</button>
                             </div>
-                            <div class="col-12 text-center">
-                                <a href="./register.php" name="button">¿No tienes una cuenta?</a>
-                            </div>
                         </form>
                     </div>
                 </div>

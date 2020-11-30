@@ -63,7 +63,7 @@ if(isset($_POST['update'])){
                     $_SESSION['create_album_message'] = TRUE;
                 }
             }else{
-                $query_2 = "UPDATE album_cancion SET id_album = $id_album;";
+                $query_2 = "UPDATE album_cancion SET id_album = $id_album WHERE id = $shared_id";
                 if($conn->query($query_2) === TRUE){
                     header("Location: $listadoCanciones");
                 }else{

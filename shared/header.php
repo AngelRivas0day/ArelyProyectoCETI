@@ -29,8 +29,10 @@
                 </div>
               </div>
             <?php endif; ?>
+            <?php if($_SESSION['user']['role']): ?>
             <form class="d-flex">
               <a href="http://localhost:8080/CETI/Producto/controladores/<?php echo $_SESSION['user']['role'] == 'user' ? 'auth' : 'admin_auth'; ?>.php?logout=TRUE" class="btn btn-outline-success">Logout</a>
             </form>
+            <?php endif; ?>
           </div>
         </nav>

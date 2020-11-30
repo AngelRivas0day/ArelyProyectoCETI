@@ -14,7 +14,7 @@ if (isset($_POST['login'])) { // vemos si estamos intentado hacer login
         $query = "SELECT * FROM administrador WHERE correo = '$email' AND contrasena = '$encPassword'";
         if($result = $conn->query($query)){
             if(mysqli_num_rows($result) == 0){
-                header("Location: $userLogin");
+                header("Location: $adminLogin");
                 $_SESSION['admin_login_error'] = TRUE;
             }else{
                 while($row = $result->fetch_assoc()){

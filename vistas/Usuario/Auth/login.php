@@ -12,6 +12,9 @@ if($_SESSION['isAuth'] == TRUE){
                 <div class="card">
                     <div class="card-body">
                         <form action="../../../controladores/auth.php" method="POST" class="row w-100">
+                            <div class="col-12">
+                                <h3 class="text-center">User login</h3>
+                            </div>
                             <div class="col-12 mb-3">
                               <label class="form-label">Correo</label>
                               <input type="email" name="correo" class="form-control" placeholder="name@example.com" required>
