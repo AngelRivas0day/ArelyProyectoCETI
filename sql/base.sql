@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Nov 30, 2020 at 01:30 AM
+-- Generation Time: Nov 30, 2020 at 04:48 PM
 -- Server version: 5.7.26
 -- PHP Version: 7.4.2
 
@@ -21,11 +21,18 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `administrador` (
-  `id` tinyint(11) NOT NULL,
+  `id` tinyint(11) UNSIGNED NOT NULL,
   `nombre` varchar(30) NOT NULL,
   `correo` varchar(50) NOT NULL,
   `contrasena` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `administrador`
+--
+
+INSERT INTO `administrador` (`id`, `nombre`, `correo`, `contrasena`) VALUES
+(1, 'Angel Rivas', 'admin@admin.com', 'd033e22ae348aeb5660fc2140aec35850c4da997');
 
 -- --------------------------------------------------------
 
@@ -45,8 +52,9 @@ CREATE TABLE `album` (
 
 INSERT INTO `album` (`id`, `nombre`, `fecha`) VALUES
 (1, 'I think you think too much of me', '2019-07-11'),
-(2, '909', '2020-08-11'),
-(3, 'Love is not dying', '2020-05-12');
+(2, '909', '2020-08-06'),
+(3, 'Love is not dying!', '2020-05-12'),
+(10, 'nectar', '2020-02-12');
 
 -- --------------------------------------------------------
 
@@ -67,7 +75,8 @@ CREATE TABLE `album_cancion` (
 INSERT INTO `album_cancion` (`id`, `id_cancion`, `id_album`) VALUES
 (1, 1, 2),
 (2, 2, 1),
-(3, 3, 1);
+(3, 3, 1),
+(7, 20, 10);
 
 -- --------------------------------------------------------
 
@@ -87,8 +96,10 @@ CREATE TABLE `artista` (
 --
 
 INSERT INTO `artista` (`id`, `nombre`, `genero`, `descripcion`) VALUES
-(1, 'EDEN', 'Indie', 'Eden es un srtista que lorem ipsum dolor sit amet consectetur aditis.'),
-(2, 'Jeremy Zucker', 'Pop', 'lorem ipsum dolor site amet');
+(1, 'EDEN', 'Indie, pop', 'Eden es un artista Australiano que lorem ipsum dolor sit amet consectetur aditis....'),
+(2, 'Jeremy Zucker', 'Indie, pop', 'Lorem IPSUM dolor sit amet, consectetur aditis. Edit. Con messages.'),
+(6, 'Lauv', 'Indie, pop', 'ljabsdasgfkuysdgfkuygsadf'),
+(7, 'Joji', 'emo rap', 'sdgfdasg');
 
 -- --------------------------------------------------------
 
@@ -109,7 +120,8 @@ CREATE TABLE `artista_album` (
 INSERT INTO `artista_album` (`id`, `id_album`, `id_artista`) VALUES
 (1, 1, 1),
 (2, 2, 1),
-(3, 3, 2);
+(3, 3, 2),
+(10, 10, 7);
 
 -- --------------------------------------------------------
 
@@ -128,9 +140,10 @@ CREATE TABLE `cancion` (
 --
 
 INSERT INTO `cancion` (`id`, `nombre`, `file`) VALUES
-(1, '909', '/path.mp3'),
-(2, 'drugs', '/path.mp3'),
-(3, 'rock and roll', '/path.mp3');
+(1, '909', '../files/'),
+(2, 'drugs', '../files/drugs-espanol.mp3'),
+(3, 'rock and roll', '/path.mp3'),
+(20, 'Normal people', '../files/normal-people-ft-rei-brown.mp3');
 
 -- --------------------------------------------------------
 
@@ -157,6 +170,12 @@ INSERT INTO `usuario` (`id`, `nombre`, `correo`, `contrasena`) VALUES
 --
 
 --
+-- Indexes for table `administrador`
+--
+ALTER TABLE `administrador`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `album`
 --
 ALTER TABLE `album`
@@ -167,8 +186,8 @@ ALTER TABLE `album`
 --
 ALTER TABLE `album_cancion`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `id_cancion` (`id_cancion`),
-  ADD KEY `id_album` (`id_album`);
+  ADD KEY `id_album` (`id_album`),
+  ADD KEY `album_cancion_ibfk_1` (`id_cancion`);
 
 --
 -- Indexes for table `artista`
@@ -181,8 +200,8 @@ ALTER TABLE `artista`
 --
 ALTER TABLE `artista_album`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `id_album` (`id_album`),
-  ADD KEY `id_artista` (`id_artista`);
+  ADD KEY `id_artista` (`id_artista`),
+  ADD KEY `artista_album_ibfk_1` (`id_album`);
 
 --
 -- Indexes for table `cancion`
@@ -201,34 +220,40 @@ ALTER TABLE `usuario`
 --
 
 --
+-- AUTO_INCREMENT for table `administrador`
+--
+ALTER TABLE `administrador`
+  MODIFY `id` tinyint(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `album`
 --
 ALTER TABLE `album`
-  MODIFY `id` tinyint(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` tinyint(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `album_cancion`
 --
 ALTER TABLE `album_cancion`
-  MODIFY `id` tinyint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` tinyint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `artista`
 --
 ALTER TABLE `artista`
-  MODIFY `id` tinyint(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` tinyint(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `artista_album`
 --
 ALTER TABLE `artista_album`
-  MODIFY `id` tinyint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` tinyint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `cancion`
 --
 ALTER TABLE `cancion`
-  MODIFY `id` tinyint(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` tinyint(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `usuario`
@@ -244,12 +269,12 @@ ALTER TABLE `usuario`
 -- Constraints for table `album_cancion`
 --
 ALTER TABLE `album_cancion`
-  ADD CONSTRAINT `album_cancion_ibfk_1` FOREIGN KEY (`id_cancion`) REFERENCES `cancion` (`id`),
+  ADD CONSTRAINT `album_cancion_ibfk_1` FOREIGN KEY (`id_cancion`) REFERENCES `cancion` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `album_cancion_ibfk_2` FOREIGN KEY (`id_album`) REFERENCES `album` (`id`);
 
 --
 -- Constraints for table `artista_album`
 --
 ALTER TABLE `artista_album`
-  ADD CONSTRAINT `artista_album_ibfk_1` FOREIGN KEY (`id_album`) REFERENCES `album` (`id`),
+  ADD CONSTRAINT `artista_album_ibfk_1` FOREIGN KEY (`id_album`) REFERENCES `album` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `artista_album_ibfk_2` FOREIGN KEY (`id_artista`) REFERENCES `artista` (`id`);
