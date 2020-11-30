@@ -17,9 +17,9 @@ if(isset($_POST['create'])){
             $last_id = mysqli_insert_id($conn);
             $query_2 = "INSERT INTO artista_album (id_album, id_artista) VALUES ($last_id,$id_artista);";
             if($conn->query($query_2) === TRUE){
-                header("Location: $listadoArtistas");
+                header("Location: $listadoAlbumes");
             }else{
-                header("Location: $listadoArtistas");
+                header("Location: $listadoAlbumes");
             }
             $_SESSION['create_album_message'] = FALSE;
         }else{
@@ -57,7 +57,6 @@ if(isset($_GET['delete'])){
     if(
         isset($_GET['id'])
     ){
-        echo 
         $id = $_GET['id'];
         $query = "DELETE FROM album WHERE id = $id";
         if($conn->query($query) === TRUE){

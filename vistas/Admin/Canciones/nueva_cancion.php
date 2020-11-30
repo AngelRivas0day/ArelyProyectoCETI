@@ -3,17 +3,18 @@ require('../../../shared/header.php');
 require('../../../db/conn.php');
 $cancion = array();
 $conn = connection();
-$albumes_query = "SELECT cancion.* FROM album INNER JOIN album_cancion ON album_cancion.id_album = album.id INNER JOIN cancion ON album_cancion.id_cancion = cancion.id ";
+// SELECT album.* FROM album INNER JOIN artista_album ON artista_album.id_album = album.id
+$albumes_query = "SELECT album.* FROM album INNER JOIN artista_album ON artista_album.id_album = album.id ";
 if($_GET['id']){
     $id = $_GET['id'];
-    $cardHeader = "Editar album";
+    $cardHeader = "Editar canción";
     // $cancion_query = "SELECT artista.id as artistaId, cancion.*, album.id as albumId, album_cancion.id as sharedId FROM cancion INNER JOIN album_cancion ON album_cancion.id_cancion = cancion.id INNER JOIN album ON album.id = album_cancion.id_album WHERE cancion.id = $id";
     $cancion_query = "SELECT artista.id as artistaId ,cancion.*, album.id as albumId, album_cancion.id as sharedId FROM cancion INNER JOIN album_cancion ON album_cancion.id_cancion = cancion.id INNER JOIN album ON album.id = album_cancion.id_album INNER JOIN artista_album ON artista_album.id_album = album.id INNER JOIN artista ON artista.id = artista_album.id_artista WHERE cancion.id = $id";
     if($result = $conn->query($cancion_query)){
         $cancion = $result->fetch_assoc();
     }
 }else{
-    $cardHeader = "Nuevo album";
+    $cardHeader = "Nueva canción";
 }
 ?>
 <div class="container">
@@ -22,7 +23,7 @@ if($_GET['id']){
             <div class="card shadow-lg">
                 <h3 class="card-header"><?php echo $cardHeader; ?></h3>
                 <div class="card-body">
-                    <form action="../../../controladores/album.php<?php echo $_GET['id'] ? "?id=$id" : '' ; ?>" method="POST" class="row">
+                    <form enctype="multipart/form-data" action="../../../controladores/cancion.php<?php echo $_GET['id'] ? "?id=$id" : '' ; ?>" method="POST" class="row">
                         <div class="col-12 mb-3">
                             <label class="form-label">Nombre</label>
                             <input type="text" name="nombre" class="form-control" placeholder="e.g. John Wick" value="<?php echo $cancion['nombre']; ?>" required>
@@ -32,11 +33,12 @@ if($_GET['id']){
                             <input type="file" name="file" class="form-control" value="<?php echo $cancion['file']; ?>" required>
                         </div>
                         <div class="col-12 mb-3">
-                            <label class="form-label">Artista</label>
+                            <label class="form-label">Album</label>
+                            <?php echo $cancion['albumId']; ?>
                             <select name="id_artista" class="form-select" required>
                                 <option selected>Selecciona uno...</option>
                                 <?php
-                                    if($result_ = $conn->query($albumes_query . ( isset($_GET['id']) ? "WHERE album.id = " . $cancion['artistaId'] : ';'))):
+                                    if($result_ = $conn->query($albumes_query . ( isset($_GET['id']) ? "WHERE artista_album.id_artista = " . $cancion['artistaId'] : ';'))):
                                         while ($row_ = $result_->fetch_assoc()): ?>
                                             <option value="<?php echo $row_['id']; ?>" <?php echo $row_['id'] == $cancion['albumId'] ? 'selected' : '' ;?>><?php echo $row_['nombre'] ?></option>
                                 <?php   endwhile;
