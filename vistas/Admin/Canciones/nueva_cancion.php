@@ -9,7 +9,7 @@ if($_GET['id']){
     $id = $_GET['id'];
     $cardHeader = "Editar canción";
     // $cancion_query = "SELECT artista.id as artistaId, cancion.*, album.id as albumId, album_cancion.id as sharedId FROM cancion INNER JOIN album_cancion ON album_cancion.id_cancion = cancion.id INNER JOIN album ON album.id = album_cancion.id_album WHERE cancion.id = $id";
-    $cancion_query = "SELECT artista.id as artistaId ,cancion.*, album.id as albumId, album_cancion.id as sharedId FROM cancion INNER JOIN album_cancion ON album_cancion.id_cancion = cancion.id INNER JOIN album ON album.id = album_cancion.id_album INNER JOIN artista_album ON artista_album.id_album = album.id INNER JOIN artista ON artista.id = artista_album.id_artista WHERE cancion.id = $id";
+    $cancion_query = "SELECT cancion.*, artista.id as artistaId, album.id as albumId, album_cancion.id as sharedId FROM cancion INNER JOIN album_cancion ON album_cancion.id_cancion = cancion.id INNER JOIN album ON album.id = album_cancion.id_album INNER JOIN artista_album ON artista_album.id_album = album.id INNER JOIN artista ON artista.id = artista_album.id_artista WHERE cancion.id = $id";
     if($result = $conn->query($cancion_query)){
         $cancion = $result->fetch_assoc();
     }
@@ -34,8 +34,7 @@ if($_GET['id']){
                         </div>
                         <div class="col-12 mb-3">
                             <label class="form-label">Album</label>
-                            <?php echo $cancion['albumId']; ?>
-                            <select name="id_artista" class="form-select" required>
+                            <select name="id_album" class="form-select" required>
                                 <option selected>Selecciona uno...</option>
                                 <?php
                                     if($result_ = $conn->query($albumes_query . ( isset($_GET['id']) ? "WHERE artista_album.id_artista = " . $cancion['artistaId'] : ';'))):

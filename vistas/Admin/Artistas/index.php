@@ -3,7 +3,7 @@ require('../../../shared/header.php');
 require('../../../db/conn.php');
 $conn = connection();
 if($_SESSION['user']['role'] != 'admin'){
-    header('Location: http://localhost:8080/CETI/PincheArely/vistas/Admin/Auth/login.php');
+    header('Location: http://localhost:8080/CETI/Producto/vistas/Admin/Auth/login.php');
 }
 $artistas_query = "SELECT * FROM artista";
 ?>

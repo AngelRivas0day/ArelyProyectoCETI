@@ -21,7 +21,7 @@ $canciones_query = "SELECT * FROM cancion";
                 ?>
                         <div class="col-xs-12 col-sm-12 col-md-3">
                             <div class="card shadow position-relative">
-                            <img src="https://source.unsplash.com/200x20<?php echo $row_1['id'];?>/?album,cover" class="card-img-top" alt="...">
+                            <img src="https://source.unsplash.com/200x20<?php echo rand(0, 9);?>/?album,cover" class="card-img-top" alt="...">
                                 <div class="card-body">
                                     <h5 class="card-title"><?php echo $row_1['nombre']; ?></h5>
                                     <p class="card-text">
@@ -48,7 +48,7 @@ $canciones_query = "SELECT * FROM cancion";
                 ?>
                         <div class="col-xs-12 col-sm-12 col-md-3">
                             <div class="card shadow position-relative">
-                            <img src="https://source.unsplash.com/200x20<?php echo $row_2['id'];?>/?album,cover" class="card-img-top" alt="...">
+                            <img src="https://source.unsplash.com/200x20<?php echo rand(0, 9);?>/?album,cover" class="card-img-top" alt="...">
                                 <div class="card-body">
                                     <h5 class="card-title"><?php echo substr($row_2['nombre'], 0, 20) . (strlen($row_2['nombre']) > 20 ? '...' : ''); ?></h5>
                                     <a href="./album.php?id=<?php echo $row_2['id']; ?>" class="stretched-link"></a>
@@ -72,7 +72,7 @@ $canciones_query = "SELECT * FROM cancion";
                 ?>
                         <div class="col-xs-12 col-sm-12 col-md-3">
                             <div class="card shadow position-relative">
-                            <img src="https://source.unsplash.com/200x20<?php echo $row_3['id'];?>/?album,cover,single,song" class="card-img-top" alt="...">
+                            <img src="https://source.unsplash.com/200x20<?php echo rand(0, 9);?>/?album,cover" class="card-img-top" alt="...">
                                 <div class="card-body">
                                     <h5 class="card-title"><?php echo $row_3['nombre']; ?></h5>
                                     <a href="./cancion.php?id=<?php echo $row_3['id'];?>" class="stretched-link"></a>

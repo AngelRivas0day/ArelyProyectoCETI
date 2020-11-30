@@ -3,7 +3,7 @@ require('../../../shared/header.php');
 require('../../../db/conn.php');
 $conn = connection();
 if($_SESSION['user']['role'] != 'admin'){
-    header('Location: http://localhost:8080/CETI/PincheArely/vistas/Admin/Auth/login.php');
+    header('Location: http://localhost:8080/CETI/Producto/vistas/Admin/Auth/login.php');
 }
 $canciones_query = "SELECT cancion.*, album.nombre as albumNombre FROM album INNER JOIN album_cancion ON album_cancion.id_album = album.id INNER JOIN cancion ON cancion.id = album_cancion.id_cancion";
 ?>

@@ -53,4 +53,8 @@ if(isset($_POST['register'])){ // vemos si estamos intentando registrarnos
         }
     }
 }
+if(isset($_GET['logout'])){
+    session_destroy();
+    header("Location: $userLogin");
+}
 ?>
