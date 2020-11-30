@@ -11,30 +11,31 @@ if (isset($_POST['login'])) { // vemos si estamos intentado hacer login
         $email = $_POST['correo'];
         $password = $_POST['contrasena'];
         $encPassword = sha1($password);
-        $query = "SELECT * FROM usuario WHERE correo = '$email' AND contrasena = '$encPassword'";
+        $query = "SELECT * FROM administrador WHERE correo = '$email' AND contrasena = '$encPassword'";
         if($result = $conn->query($query)){
             if(mysqli_num_rows($result) == 0){
                 header("Location: $userLogin");
-                $_SESSION['user_login_error'] = TRUE;
+                $_SESSION['admin_login_error'] = TRUE;
             }else{
                 while($row = $result->fetch_assoc()){
                     $_SESSION['user'] = array(
                         'nombre' => $row['nombre'],
-                        'role' => 'user',
+                        'role' => 'admin',
                         'email' => $row['correo']
                     );
                     $_SESSION['isAuth'] = TRUE;
-                    $_SESSION['user_login_error'] = FALSE;
+                    $_SESSION['admin_login_error'] = FALSE;
                 }
-                header("Location: $userHome");
+                header("Location: $adminDashboard");
             }
         }else{
-            header("Location: $userLogin");
-            $_SESSION['user_login_error'] = TRUE;
+            header("Location: $adminLogin");
+            $_SESSION['admin_login_error'] = TRUE;
         }
     }
 }
 if(isset($_POST['register'])){ // vemos si estamos intentando registrarnos
+    echo var_dump($_POST);
     if(
         isset($_POST['correo']) && 
         isset($_POST['contrasena']) && 
@@ -44,9 +45,9 @@ if(isset($_POST['register'])){ // vemos si estamos intentando registrarnos
         $email = $_POST['correo'];
         $password = $_POST['contrasena'];
         $encPassword = sha1($password);
-        $query = "INSERT INTO usuario (nombre, correo, contrasena) VALUES ('$name','$email','$encPassword')";
+        $query = "INSERT INTO administrador (nombre, correo, contrasena) VALUES ('$name','$email','$encPassword')";
         if($conn->query($query) === TRUE){
-            header("Location: $userLogin");
+            header("Location: $adminLogin");
         }else{
             echo "Hubo un error";
             echo $conn->error;

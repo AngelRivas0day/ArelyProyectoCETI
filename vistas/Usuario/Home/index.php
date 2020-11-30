@@ -7,6 +7,7 @@ $artistas_query = "SELECT * FROM artista";
 $albumes_query = "SELECT * FROM album";
 $canciones_query = "SELECT * FROM cancion";
 ?>
+<?php // phpinfo() ?>
 <div class="container">
     <div class="row mt-5">
         <div class="col-12">
