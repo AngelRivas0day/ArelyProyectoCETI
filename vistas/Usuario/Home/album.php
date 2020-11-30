@@ -7,7 +7,8 @@ if($conn->connect_errno){
 }
 if(isset($_GET['id'])):
 $id = $_GET['id'];
-$canciones_query = "SELECT cancion.* FROM album INNER JOIN album_cancion ON album_cancion.id_album = album.id INNER JOIN cancion ON album_cancion.id_cancion = cancion.id WHERE album.id = $id";
+// $canciones_query = "SELECT cancion.* FROM album INNER JOIN album_cancion ON album_cancion.id_album = album.id INNER JOIN cancion ON album_cancion.id_cancion = cancion.id WHERE album.id = $id";
+$canciones_query = "SELECT cancion.* FROM album_cancion INNER JOIN album ON album.id = album_cancion.id_album INNER JOIN cancion ON cancion.id = album_cancion.id_cancion WHERE album.id = $id";
 $album_artista_query = "SELECT album.nombre AS albumNombre, album.fecha AS albumFecha, artista.* FROM artista INNER JOIN album ON album.id = $id";
     if($result = $conn->query($album_artista_query)):
         while($row = $result->fetch_assoc()):
@@ -27,8 +28,7 @@ $album_artista_query = "SELECT album.nombre AS albumNombre, album.fecha AS album
         ?>
                 <div class="col-12">
                     <div class="song_item position-relative">
-                        <img src="https://source.unsplash.com/50x5<?php echo $row_['id'];?>/?musician,male" class="item_image">
-                        <div class="item_info">
+                    <img src="https://source.unsplash.com/50x5<?php echo rand(0, 8);?>/?album,cover" class="card-img-top" alt="...">                        <div class="item_info">
                             <h5 class="mb-0 info_song-name"><?php echo $row_['nombre'];?></h5>
                             <span class="info_song-feats muted-text">test</span>
                         </div>

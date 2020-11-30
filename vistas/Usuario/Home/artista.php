@@ -31,8 +31,7 @@ $albums_artista_query = "SELECT album.* FROM album INNER JOIN artista_album ON a
                     <?php while($row_ = $result->fetch_assoc()): ?>
                         <div class="col-xs-12 col-sm-12 col-md-3">
                             <div class="card shadow position-relative">
-                                <img src="https://source.unsplash.com/200x20<?php echo $row_['id'];?>/?album,cover" class="card-img-top" alt="...">
-                                <div class="card-body">
+                            <img src="https://source.unsplash.com/200x20<?php echo rand(0, 9);?>/?album,cover" class="card-img-top" alt="...">                                <div class="card-body">
                                     <h5 class="card-title"><?php echo substr($row_['nombre'], 0, 20) . (strlen($row_['nombre']) > 20 ? '...' : '') ;?></h5>
                                     <a href="./album.php?id=<?php echo $row_['id'];?>" class="stretched-link"></a>
                                </div>
