@@ -7,7 +7,7 @@ if($conn->connect_errno){
 }
 if(isset($_GET['id'])):
 $id = $_GET['id'];
-$canciones_query = "SELECT cancion.* FROM cancion INNER JOIN album ON album.id = $id";
+$canciones_query = "SELECT cancion.* FROM album INNER JOIN album_cancion ON album_cancion.id_album = album.id INNER JOIN cancion ON album_cancion.id_cancion = cancion.id WHERE album.id = $id";
 $album_artista_query = "SELECT album.nombre AS albumNombre, album.fecha AS albumFecha, artista.* FROM artista INNER JOIN album ON album.id = $id";
     if($result = $conn->query($album_artista_query)):
         while($row = $result->fetch_assoc()):

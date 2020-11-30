@@ -2,10 +2,12 @@
 session_start();
 if (!isset($_SESSION['user'])) {
     header('Location: http://localhost:8080/CETI/PincheArely/vistas/Usuario/Auth/login.php');
-}else if(isset($_SESSION['user']) && $_SESSION['user_role'] == 'admin'){
-    header('Location: http://localhost:8080/CETI/PincheArely/vistas/Admin/Artistas/');
-}else if(isset($_SESSION['user']) && $_SESSION['user_role'] == 'client'){
-    header('Location: http://localhost:8080/CETI/PincheArely/vistas/Usuario/Artistas/');
+}else if(isset($_SESSION['user']['role']) == 'admin'){
+    // echo $_SESSION['user'];
+    header('Location: http://localhost:8080/CETI/PincheArely/vistas/Admin/Artistas/index.php');
+}else if(isset($_SESSION['user']['role']) == 'user'){
+    // echo $_SESSION['user'];
+    header('Location: http://localhost:8080/CETI/PincheArely/vistas/Usuario/Home/');
 }
-session_destroy();
+// session_destroy();
 ?>

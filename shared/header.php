@@ -16,22 +16,9 @@
     <body>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
           <div class="container-fluid">
-            <a class="navbar-brand" href="http://localhost:8080/CETI/PincheArely/">Spotifly</a>
+            <a class="navbar-brand" href="http://localhost:8080/CETI/PincheArely/vistas/Usuario/Home/">Spotifly</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse">
-              <ul class="navbar-nav">
-                <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="#">Artistas</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#">Albumes</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#">Canciones</a>
-                </li>
-              </ul>
-            </div>
           </div>
         </nav>
