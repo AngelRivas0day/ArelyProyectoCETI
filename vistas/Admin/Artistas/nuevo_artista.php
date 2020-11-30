@@ -33,6 +33,14 @@ if($_GET['id']){
                             <label for="exampleFormControlTextarea1" class="form-label">Descripci&oacute;n</label>
                             <textarea class="form-control" name="descripcion" rows="3" required><?php echo $artista['descripcion']; ?></textarea>
                         </div>
+                        <div class="col-12 messages">
+                            <?php if($_SESSION['create_artist_message']): ?>
+                                <p class="text-warning">Hubo un error al crear el artista</p>
+                            <?php endif; ?>
+                            <?php if($_SESSION['update_artist_message']): ?>
+                                <p class="text-warning">Hubo un error al actualizar el artista</p>
+                            <?php endif; ?>
+                        </div>
                         <div class="col-12 text-right">
                             <?php if($_GET['id']): ?>
                                 <input type="hidden" name="update">

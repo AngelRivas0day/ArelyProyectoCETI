@@ -17,8 +17,17 @@
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
           <div class="container-fluid">
             <a class="navbar-brand" href="http://localhost:8080/CETI/PincheArely/vistas/Usuario/Home/">Spotifly</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
+            <?php if($_SESSION['user']['role'] == 'admin'): ?>
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                  <a class="nav-link" href="http://localhost:8080/CETI/PincheArely/vistas/Admin/Artistas/">Artistas</a>
+                  <a class="nav-link" href="http://localhost:8080/CETI/PincheArely/vistas/Admin/Albumes/">Albumes</a>
+                  <a class="nav-link" href="http://localhost:8080/CETI/PincheArely/vistas/Admin/Canciones/">Canciones</a>
+                </div>
+              </div>
+            <?php endif; ?>
           </div>
         </nav>

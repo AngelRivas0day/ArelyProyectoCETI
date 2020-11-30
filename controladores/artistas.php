@@ -15,7 +15,9 @@ if(isset($_POST['create'])){
         $query = "INSERT INTO artista (nombre, genero, descripcion) VALUES ('$name','$genero','$desc')";
         if($conn->query($query) === TRUE){
             header("Location: $adminDashboard");
+            $_SESSION['create_artist_message'] = FALSE;
         }else{
+            $_SESSION['create_artist_message'] = TRUE;
         }
     }
 }
@@ -32,16 +34,15 @@ if(isset($_POST['update'])){
         $query = "UPDATE artista SET nombre = '$name', genero = '$genero', descripcion= '$desc' WHERE id = $id;";
         if($conn->query($query) === TRUE){
             header("Location: $adminDashboard");
+            $_SESSION['update_artist_message'] = FALSE;
         }else{
             header("Location: $formArtista?id=$id");
+            $_SESSION['update_artist_message'] = TRUE;
         }
     }
 }
 if(isset($_GET['delete'])){
-    if(
-        isset($_GET['id'])
-    ){
-        echo 
+    if(isset($_GET['id'])){
         $id = $_GET['id'];
         $query = "DELETE FROM artista WHERE id = $id";
         if($conn->query($query) === TRUE){
