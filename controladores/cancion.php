@@ -44,16 +44,16 @@ if(isset($_POST['update'])){
         $shared_id = $_POST['shared_id'];
         $name = $_POST['nombre'];
         $id_album = $_POST['id_album'];
-        if(isset($_FILES['file'])){
+        if($_FILES['file']['name'] != ""){
             $query = "UPDATE cancion SET nombre = '$name', file = '$target_file' WHERE id = $id;";
         }else{
             $query = "UPDATE cancion SET nombre = '$name' WHERE id = $id;";
         }
         if($conn->query($query) === TRUE){
             $query_2 = "UPDATE album_cancion SET id_album = $id_album WHERE id = $shared_id;";
-            if(isset($_FILES['file'])){
+            if($_FILES['file']['name'] != ""){
                 if (move_uploaded_file($_FILES["file"]["tmp_name"], $target_file)) {
-                    $query_2 = "INSERT INTO album_cancion (id_cancion, id_album) VALUES ($last_id, $id_album);";
+                    $query_2 = "UPDATE album_cancion SET id_album = $id_album;";
                     if($conn->query($query_2) === TRUE){
                         header("Location: $listadoCanciones");
                     }else{
@@ -63,7 +63,7 @@ if(isset($_POST['update'])){
                     $_SESSION['create_album_message'] = TRUE;
                 }
             }else{
-                $query_2 = "INSERT INTO album_cancion (id_cancion, id_album) VALUES ($last_id, $id_album);";
+                $query_2 = "UPDATE album_cancion SET id_album = $id_album;";
                 if($conn->query($query_2) === TRUE){
                     header("Location: $listadoCanciones");
                 }else{
