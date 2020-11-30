@@ -28,11 +28,12 @@ $album_artista_query = "SELECT album.nombre AS albumNombre, album.fecha AS album
         ?>
                 <div class="col-12">
                     <div class="song_item position-relative">
-                    <img src="https://source.unsplash.com/50x5<?php echo rand(0, 8);?>/?album,cover" class="card-img-top" alt="...">                        <div class="item_info">
-                            <h5 class="mb-0 info_song-name"><?php echo $row_['nombre'];?></h5>
-                            <span class="info_song-feats muted-text">test</span>
-                        </div>
-                        <a class="stretched-link" href="./cancion.php?id=<?php echo $row_['id'];?>"></a>
+                    <img style="width: 50px; height: 50px; object-fit: cover; border-radius: 100%;" src="https://source.unsplash.com/50x5<?php echo rand(0, 8);?>/?album,cover" class="card-img-top mr-3" alt="...">
+                    <div class="item_info">
+                        <h5 class="mb-0 info_song-name"><?php echo $row_['nombre'];?></h5>
+                        <span class="info_song-feats muted-text">test</span>
+                    </div>
+                    <a class="stretched-link" href="./cancion.php?id=<?php echo $row_['id'];?>"></a>
                     </div>
                 </div>
         <?php

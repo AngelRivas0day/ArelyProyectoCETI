@@ -30,7 +30,7 @@ if($_GET['id']){
                         </div>
                         <div class="col-12 mb-3">
                             <label class="form-label">Canci&oacute;n</label>
-                            <input type="file" name="file" class="form-control" value="<?php echo $cancion['file']; ?>" required>
+                            <input type="file" name="file" class="form-control" value="<?php echo $cancion['file']; ?>">
                         </div>
                         <div class="col-12 mb-3">
                             <label class="form-label">Album</label>
