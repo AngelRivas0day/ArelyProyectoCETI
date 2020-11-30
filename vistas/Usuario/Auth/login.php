@@ -1,4 +1,11 @@
-<?php require('../../../shared/header.php') ?>
+<?php
+require('../../../shared/header.php');
+require('../../../shared/_vars.php');
+
+if($_SESSION['isAuth'] == TRUE){
+    header("Location: $userHome");
+}
+?>
     <div class="container">
         <div class="row">
             <div class="login-container">

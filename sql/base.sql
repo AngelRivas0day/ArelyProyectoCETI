@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Nov 29, 2020 at 07:44 PM
+-- Generation Time: Nov 30, 2020 at 01:30 AM
 -- Server version: 5.7.26
 -- PHP Version: 7.4.2
 
@@ -39,6 +39,15 @@ CREATE TABLE `album` (
   `fecha` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `album`
+--
+
+INSERT INTO `album` (`id`, `nombre`, `fecha`) VALUES
+(1, 'I think you think too much of me', '2019-07-11'),
+(2, '909', '2020-08-11'),
+(3, 'Love is not dying', '2020-05-12');
+
 -- --------------------------------------------------------
 
 --
@@ -50,6 +59,15 @@ CREATE TABLE `album_cancion` (
   `id_cancion` tinyint(11) UNSIGNED NOT NULL,
   `id_album` tinyint(11) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `album_cancion`
+--
+
+INSERT INTO `album_cancion` (`id`, `id_cancion`, `id_album`) VALUES
+(1, 1, 2),
+(2, 2, 1),
+(3, 3, 1);
 
 -- --------------------------------------------------------
 
@@ -69,7 +87,8 @@ CREATE TABLE `artista` (
 --
 
 INSERT INTO `artista` (`id`, `nombre`, `genero`, `descripcion`) VALUES
-(1, 'EDEN', 'Indie', 'Eden es un srtista que lorem ipsum dolor sit amet consectetur aditis.');
+(1, 'EDEN', 'Indie', 'Eden es un srtista que lorem ipsum dolor sit amet consectetur aditis.'),
+(2, 'Jeremy Zucker', 'Pop', 'lorem ipsum dolor site amet');
 
 -- --------------------------------------------------------
 
@@ -83,6 +102,15 @@ CREATE TABLE `artista_album` (
   `id_artista` tinyint(11) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `artista_album`
+--
+
+INSERT INTO `artista_album` (`id`, `id_album`, `id_artista`) VALUES
+(1, 1, 1),
+(2, 2, 1),
+(3, 3, 2);
+
 -- --------------------------------------------------------
 
 --
@@ -94,6 +122,15 @@ CREATE TABLE `cancion` (
   `nombre` varchar(255) NOT NULL,
   `file` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `cancion`
+--
+
+INSERT INTO `cancion` (`id`, `nombre`, `file`) VALUES
+(1, '909', '/path.mp3'),
+(2, 'drugs', '/path.mp3'),
+(3, 'rock and roll', '/path.mp3');
 
 -- --------------------------------------------------------
 
@@ -167,31 +204,31 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT for table `album`
 --
 ALTER TABLE `album`
-  MODIFY `id` tinyint(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` tinyint(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `album_cancion`
 --
 ALTER TABLE `album_cancion`
-  MODIFY `id` tinyint(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` tinyint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `artista`
 --
 ALTER TABLE `artista`
-  MODIFY `id` tinyint(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` tinyint(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `artista_album`
 --
 ALTER TABLE `artista_album`
-  MODIFY `id` tinyint(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` tinyint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `cancion`
 --
 ALTER TABLE `cancion`
-  MODIFY `id` tinyint(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` tinyint(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `usuario`
