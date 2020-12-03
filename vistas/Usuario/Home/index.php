@@ -4,7 +4,7 @@ require('../../../db/conn.php');
 $conn = connection();
 
 $artistas_query = "SELECT * FROM artista";
-$albumes_query = "SELECT * FROM album";
+$albumes_query = "SELECT album.nombre as albumNombre, artista.*, album.fecha as albumFecha, album.id as albumId FROM album INNER JOIN artista_album ON artista_album.id_album = album.id INNER JOIN artista ON artista.id = artista_album.id_artista;";
 $canciones_query = "SELECT * FROM cancion";
 ?>
 <?php // phpinfo() ?>
@@ -50,8 +50,9 @@ $canciones_query = "SELECT * FROM cancion";
                             <div class="card shadow position-relative">
                             <img src="https://source.unsplash.com/200x20<?php echo rand(0, 9);?>/?album,cover" class="card-img-top" alt="...">
                                 <div class="card-body">
-                                    <h5 class="card-title"><?php echo substr($row_2['nombre'], 0, 20) . (strlen($row_2['nombre']) > 20 ? '...' : ''); ?></h5>
-                                    <a href="./album.php?id=<?php echo $row_2['id']; ?>" class="stretched-link"></a>
+                                    <h5 class="card-title"><?php echo substr($row_2['albumNombre'], 0, 20) . (strlen($row_2['albumNombre']) > 20 ? '...' : ''); ?></h5>
+                                    <span class="text-muted"><?php echo $row_2['nombre']; ?></span>
+                                    <a href="./album.php?id=<?php echo $row_2['albumId']; ?>" class="stretched-link"></a>
                                 </div>
                             </div>
                         </div> 
