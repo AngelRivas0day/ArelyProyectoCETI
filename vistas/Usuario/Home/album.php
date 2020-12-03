@@ -9,7 +9,7 @@ if(isset($_GET['id'])):
 $id = $_GET['id'];
 // $canciones_query = "SELECT cancion.* FROM album INNER JOIN album_cancion ON album_cancion.id_album = album.id INNER JOIN cancion ON album_cancion.id_cancion = cancion.id WHERE album.id = $id";
 $canciones_query = "SELECT cancion.* FROM album_cancion INNER JOIN album ON album.id = album_cancion.id_album INNER JOIN cancion ON cancion.id = album_cancion.id_cancion WHERE album.id = $id";
-$album_artista_query = "SELECT album.nombre AS albumNombre, album.fecha AS albumFecha, artista.* FROM artista INNER JOIN album ON album.id = $id";
+$album_artista_query = "SELECT album.nombre as albumNombre, artista.*, album.fecha as albumFecha FROM album INNER JOIN artista_album ON artista_album.id_album = album.id INNER JOIN artista ON artista.id = artista_album.id_artista WHERE album.id = $id";
     if($result = $conn->query($album_artista_query)):
         while($row = $result->fetch_assoc()):
 ?>

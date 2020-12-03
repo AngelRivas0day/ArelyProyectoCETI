@@ -31,6 +31,7 @@ if($_GET['id']){
                         <div class="col-12 mb-3">
                             <label class="form-label">Canci&oacute;n</label>
                             <input type="file" name="file" class="form-control" value="<?php echo $cancion['file']; ?>">
+                            <small class="text-muted"><?php echo $cancion['file'] ? 'Archivo existente: ' . $cancion['file'] : 'No hay archivo para la canción...'; ?></small>
                         </div>
                         <div class="col-12 mb-3">
                             <label class="form-label">Album</label>

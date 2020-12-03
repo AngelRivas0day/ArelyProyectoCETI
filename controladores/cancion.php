@@ -3,7 +3,7 @@ require('../db/conn.php');
 require('../shared/_vars.php');
 session_start();
 $conn = connection();
-if(isset($_FILES['file'])){
+if($_FILES['file']['name'] != ""){
     $target_dir = "../files/";
     $target_file = $target_dir . basename($_FILES["file"]["name"]);
     $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
@@ -63,7 +63,7 @@ if(isset($_POST['update'])){
                     $_SESSION['create_album_message'] = TRUE;
                 }
             }else{
-                $query_2 = "UPDATE album_cancion SET id_album = $id_album WHERE id = $shared_id";
+                $query_2 = "UPDATE album_cancion SET id_album = $id_album WHERE id = $shared_id;";
                 if($conn->query($query_2) === TRUE){
                     header("Location: $listadoCanciones");
                 }else{
