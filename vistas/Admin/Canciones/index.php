@@ -5,7 +5,7 @@ $conn = connection();
 if($_SESSION['user']['role'] != 'admin'){
     header('Location: http://localhost:8080/CETI/Producto/vistas/Admin/Auth/login.php');
 }
-$canciones_query = "SELECT cancion.*, album.nombre as albumNombre FROM album INNER JOIN album_cancion ON album_cancion.id_album = album.id INNER JOIN cancion ON cancion.id = album_cancion.id_cancion";
+$canciones_query = "SELECT * FROM V2_P2"; // segunda vista en uso
 ?>
 <div class="container">
     <div class="row">
