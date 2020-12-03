@@ -3,12 +3,10 @@ require('../../../shared/header.php');
 require('../../../db/conn.php');
 $cancion = array();
 $conn = connection();
-// SELECT album.* FROM album INNER JOIN artista_album ON artista_album.id_album = album.id
 $albumes_query = "SELECT album.* FROM album INNER JOIN artista_album ON artista_album.id_album = album.id ";
 if($_GET['id']){
     $id = $_GET['id'];
     $cardHeader = "Editar canción";
-    // $cancion_query = "SELECT artista.id as artistaId, cancion.*, album.id as albumId, album_cancion.id as sharedId FROM cancion INNER JOIN album_cancion ON album_cancion.id_cancion = cancion.id INNER JOIN album ON album.id = album_cancion.id_album WHERE cancion.id = $id";
     $cancion_query = "SELECT cancion.*, artista.id as artistaId, album.id as albumId, album_cancion.id as sharedId FROM cancion INNER JOIN album_cancion ON album_cancion.id_cancion = cancion.id INNER JOIN album ON album.id = album_cancion.id_album INNER JOIN artista_album ON artista_album.id_album = album.id INNER JOIN artista ON artista.id = artista_album.id_artista WHERE cancion.id = $id";
     if($result = $conn->query($cancion_query)){
         $cancion = $result->fetch_assoc();
